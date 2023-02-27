@@ -57,6 +57,10 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
 
+  # Specifies the cookie digest and salt
+  config.action_dispatch.signed_cookie_digest = 'SHA256'
+  config.action_dispatch.signed_cookie_salt = ENV.fetch('COOKIE_SALT', nil)
+
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
