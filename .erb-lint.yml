@@ -1,0 +1,25 @@
+---
+EnableDefaultLinters: true
+exclude:
+  - 'vendor/**/*'
+linters:
+  DeprecatedClasses:
+    enabled: true
+  ErbSafety:
+    enabled: true
+  HardCodedString:
+    enabled: false
+  PartialInstanceVariable:
+    enabled: true
+  RequireScriptNonce:
+    enabled: true
+  Rubocop:
+    enabled: true
+    rubocop_config:
+      inherit_from:
+        - .rubocop.yml
+  RubocopText:
+    enabled: true
+    rubocop_config:
+      inherit_from:
+        - .rubocop.yml
