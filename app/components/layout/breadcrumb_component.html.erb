@@ -1,0 +1,11 @@
+<li>
+  <div class="flex items-center">
+    <%= heroicon 'chevron-right', variant: :mini, options: { class: 'flex-shrink-0 text-white' } %>
+    <% if @breadcrumb.link? %>
+      <%= link_to @breadcrumb.name, @breadcrumb.path,
+                  class: 'ml-4 text-sm font-medium text-white hover:text-white' %>
+    <% else %>
+      <span class="ml-4 text-sm font-medium text-white hover:text-white"><%= @breadcrumb.name %></span>
+    <% end %>
+  </div>
+</li>

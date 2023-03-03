@@ -1,0 +1,8 @@
+<% content_for :title do %>
+  Dashboard
+<% end %>
+
+<%= link_to 'Sign out',
+            destroy_user_session_path,
+            data: { turbo_method: :delete },
+            class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>

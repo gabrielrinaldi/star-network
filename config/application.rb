@@ -25,6 +25,14 @@ module StarNetwork
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # Errors
+    config.exceptions_app = routes
+
+    # Background jobs
+    config.active_job.queue_adapter = :sidekiq
+    config.action_mailer.deliver_later_queue_name = :high
+    config.active_storage.queues.purge = :low
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

@@ -1,0 +1,12 @@
+<%= render(Devise::HeaderComponent.new(title: 'Two Factor Authentication',
+                                       link_title: 'Back to login',
+                                       link_path: new_session_path(resource_name))) %>
+
+<%= render(Devise::FrameComponent.new(devise_mapping:, flash:)) do %>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f| %>
+    <div class="space-y-6">
+      <%= f.input :otp_attempt, label: 'OTP' %>
+      <%= f.button :submit, 'Login', class: 'flex w-full' %>
+    </div>
+  <% end %>
+<% end %>

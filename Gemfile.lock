@@ -71,6 +71,7 @@ GEM
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
     backport (1.2.0)
+    bcrypt (3.1.18)
     benchmark (0.2.1)
     better_html (2.0.1)
       actionview (>= 6.0)
@@ -87,6 +88,7 @@ GEM
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
+    chunky_png (1.4.0)
     chusaku (0.6.1)
       railties (>= 3.0)
     concurrent-ruby (1.2.2)
@@ -94,6 +96,17 @@ GEM
     crass (1.0.6)
     date (3.3.3)
     debug (1.7.1)
+    devise (4.9.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+    devise-two-factor (5.0.0)
+      activesupport (~> 7.0)
+      devise (~> 4.0)
+      railties (~> 7.0)
+      rotp (~> 6.0)
     diff-lcs (1.5.0)
     e2mmap (0.1.0)
     erb_lint (0.3.1)
@@ -104,6 +117,10 @@ GEM
       rubocop
       smart_properties
     erubi (1.12.0)
+    faraday (2.7.4)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -126,10 +143,13 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.6.3)
+    jwt (2.6.0)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
+    light-service (0.18.0)
+      activesupport (>= 4.0.0)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -146,6 +166,7 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.17.0)
+    mjml-rails (4.8.0)
     msgpack (1.6.0)
     net-imap (0.3.4)
       date
@@ -156,15 +177,22 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
+    nilify_blanks (1.4.0)
+      activerecord (>= 4.0.0)
+      activesupport (>= 4.0.0)
     nio4r (2.5.8)
     nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
+    orm_adapter (0.5.0)
     parallel (1.22.1)
     parser (3.2.1.0)
       ast (~> 2.4.1)
     pg (1.4.6)
+    public_suffix (5.0.1)
     puma (6.1.0)
       nio4r (~> 2.0)
+    pundit (2.3.0)
+      activesupport (>= 3.0.0)
     racc (1.6.2)
     rack (2.2.6.2)
     rack-mini-profiler (3.0.0)
@@ -207,9 +235,17 @@ GEM
     redis-client (0.12.2)
       connection_pool
     regexp_parser (2.7.0)
+    responders (3.1.0)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.2.5)
+    rotp (6.2.2)
+    rqrcode (2.1.2)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 1.0)
+    rqrcode_core (1.2.0)
     rubocop (1.46.0)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -236,6 +272,15 @@ GEM
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
+    ruby2_keywords (0.0.5)
+    ruby_http_client (3.5.5)
+    sendgrid-ruby (6.6.2)
+      ruby_http_client (~> 3.4)
+    sidekiq (7.0.6)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.11.0)
     simple_form (5.2.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -267,6 +312,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    strong_password (0.0.10)
     tailwindcss-rails (2.0.23-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.2.1)
@@ -276,13 +322,22 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
+    twilio-ruby (5.74.4)
+      faraday (>= 0.9, < 3.0)
+      jwt (>= 1.5, <= 2.6)
+      nokogiri (>= 1.6, < 2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
+    validate_url (1.0.15)
+      activemodel (>= 3.0.0)
+      public_suffix
     view_component (2.82.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -307,6 +362,8 @@ DEPENDENCIES
   bundler-audit
   chusaku
   debug
+  devise
+  devise-two-factor
   erb_lint
   heroicon
   hotwire-livereload
@@ -314,24 +371,34 @@ DEPENDENCIES
   image_processing
   importmap-rails
   jbuilder
+  light-service
+  mjml-rails
+  nilify_blanks
   pg
   puma
+  pundit
   rack-mini-profiler
   rails (~> 7.0.4, >= 7.0.4.2)
   redis
+  rqrcode
   rubocop
   rubocop-performance
   rubocop-rails
   rubocop-rake
   rubocop-thread_safety
+  sendgrid-ruby
+  sidekiq
   simple_form
   solargraph
   solargraph-rails
   sprockets-rails
   stimulus-rails
+  strong_password
   tailwindcss-rails
   turbo-rails
+  twilio-ruby
   tzinfo-data
+  validate_url
   view_component
   web-console
 

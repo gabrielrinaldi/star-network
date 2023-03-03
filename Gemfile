@@ -56,6 +56,34 @@ gem 'simple_form'
 # Icons
 gem 'heroicon'
 
+# QR Codes
+gem 'rqrcode'
+
+# Authentication
+gem 'devise'
+gem 'devise-two-factor'
+gem 'pundit'
+gem 'strong_password'
+
+# Validation and cleanup
+gem 'nilify_blanks'
+gem 'validate_url'
+
+# Sendgrid SDK
+gem 'sendgrid-ruby'
+
+# Twilio SDK
+gem 'twilio-ruby'
+
+# Email templates
+gem 'mjml-rails'
+
+# Business logic
+gem 'light-service'
+
+# Background jobs
+gem 'sidekiq'
+
 # HTML safety
 gem 'better_html'
 

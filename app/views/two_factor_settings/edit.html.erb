@@ -1,0 +1,29 @@
+<% content_for :title do %>
+  Two Factor Authentication
+<% end %>
+<%= render(Layout::ContentFrameComponent.new) do %>
+  <div class="grid grid-cols-1 sm:grid-cols-2">
+    <div class="space-y-4 px-4 py-4 sm:p-6">
+      <h3 class="text-lg font-medium leading-6 text-gray-900">Backup Codes</h3>
+      <p class="my-2 text-sm text-gray-500">
+        Keep these backup codes safe in case you lose access to your authenticator app:
+      </p>
+      <div class="grid grid-cols-2 italic text-orange-700">
+        <% @backup_codes.each_slice(2) do |(code1, code2)| %>
+          <div><%= code1 %></div>
+          <div><%= code2 %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="space-y-4 px-4 py-4 sm:p-6">
+      <h3 class="text-lg font-medium leading-6 text-gray-900">Two Factor Setup Complete</h3>
+      <p class="my-2 text-sm text-gray-500">
+        Two factor authentication has been successfully enabled.
+      </p>
+      <div>
+        <%= render(Layout::ButtonComponent.new(text: 'Return to account settings', path: edit_user_registration_path)) %>
+      </div>
+    </div>
+  </div>
+<% end %>

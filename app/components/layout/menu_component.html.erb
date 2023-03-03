@@ -1,0 +1,4 @@
+<%= render(Layout::MenuItemComponent.new(active: active('dashboard'), mobile: @mobile,
+                                         name: 'Dashboard', path: dashboard_path)) %>
+<%= render(Layout::MenuItemComponent.new(hide: admin_only, mobile: @mobile,
+                                         name: 'Sideqik', path: sidekiq_web_path)) %>

@@ -1,0 +1,20 @@
+<div class="mb-2">
+  <nav class="sm:hidden" aria-label="Back">
+    <%= link_to back_link, class: 'flex items-center text-sm font-medium text-white hover:text-white' do %>
+      <%= heroicon 'chevron-left', variant: :mini, options: { class: '-ml-1 mr-1 flex-shrink-0 text-white' } %>
+      Back
+    <% end %>
+  </nav>
+  <nav class="hidden sm:flex" aria-label="Breadcrumb">
+    <ol role="list" class="flex items-center space-x-4">
+      <li>
+        <div class="flex items-center">
+          <%= link_to dashboard_path, class: 'text-sm font-medium text-white hover:text-white' do %>
+            <%= heroicon 'home', variant: :mini %>
+          <% end %>
+        </div>
+      </li>
+      <%= render(Layout::BreadcrumbComponent.with_collection(@breadcrumbs)) %>
+    </ol>
+  </nav>
+</div>

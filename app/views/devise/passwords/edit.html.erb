@@ -1,0 +1,19 @@
+<%= render(Devise::HeaderComponent.new(title: 'Change your password',
+                                       link_title: 'Sign in to your account',
+                                       link_path: new_session_path(resource_name))) %>
+
+<%= render(Devise::FrameComponent.new(devise_mapping:, flash:)) do %>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="space-y-6">
+      <%= f.input :reset_password_token, as: :hidden %>
+      <%= f.input :password, label: 'New password', required: true, autofocus: true,
+                             hint: (if @minimum_password_length
+                                      "#{@minimum_password_length} characters minimum"
+                                    end), autocomplete: 'new-password' %>
+      <%= f.input :password_confirmation, label: 'Confirm your new password', required: true, autofocus: true,
+                                          autocomplete: 'new-password' %>
+
+      <%= f.button :submit, 'Change my password', class: 'flex w-full' %>
+    </div>
+  <% end %>
+<% end %>

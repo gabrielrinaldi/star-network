@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-gray-100">
   <head>
-    <title>StarNetwork</title>
+    <title>Star Network</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,11 +9,23 @@
 
     <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
+    <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+  <body class="h-full">
+    <%= render(Layout::FrameComponent.new) do %>
+      <%= render(Layout::NavigationComponent.new(title: (yield :title), current_user:, breadcrumbs:)) %>
+
+      <main class="-mt-32">
+        <div class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+          <%= render(Shared::FlashComponent.new(flash:)) %>
+
+          <!-- Your content -->
+          <%= yield %>
+        </div>
+      </main>
+
+      <%= render(Layout::FooterComponent.new) %>
+    <% end %>
   </body>
 </html>

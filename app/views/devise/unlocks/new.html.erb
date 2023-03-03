@@ -1,0 +1,13 @@
+<%= render(Devise::HeaderComponent.new(title: 'Resend unlock instructions',
+                                       link_title: 'Sign in to your account',
+                                       link_path: new_session_path(resource_name))) %>
+
+<%= render(Devise::FrameComponent.new(devise_mapping:, flash:)) do %>
+  <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name)) do |f| %>
+    <div class="space-y-6">
+      <%= f.input :email, required: true, autofocus: true, autocomplete: :email %>
+
+      <%= f.button :submit, 'Resend unlock instructions', class: 'flex w-full' %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,5 @@
+<% @flash.each do |type, message| %>
+  <%= render(Shared::FlashNotificationComponent.new(type:)) do %>
+    <%= message %>
+  <% end %>
+<% end %>
