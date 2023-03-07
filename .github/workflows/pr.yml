@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.3.0
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542 # v1.115.3
+        uses: ruby/setup-ruby@v1.143.0
         with:
           bundler-cache: true
   security:
@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.3.0
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542 # v1.115.3
+        uses: ruby/setup-ruby@v1.143.0
         with:
           bundler-cache: true
       - name: Security audit dependencies
@@ -36,15 +36,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.3.0
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542 # v1.115.3
+        uses: ruby/setup-ruby@v1.143.0
         with:
           bundler-cache: true
       - name: Install Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v3.6.0
         with:
-          node-version: '18.12.1'
+          node-version: '19.7.0'
       - name: Lint Ruby files
         run: ./bin/bundle exec rubocop --parallel
       - name: Lint ERB files
@@ -59,7 +59,7 @@ jobs:
       DATABASE_URL: postgresql://armory:armory@localhost/armory
     services:
       postgres:
-        image: postgres:14.5-alpine
+        image: postgres:15.2-alpine
         env:
           POSTGRES_USER: armory
           POSTGRES_PASSWORD: armory
@@ -68,9 +68,9 @@ jobs:
         options: --health-cmd pg_isready --health-interval 1s --health-timeout 1s --health-retries 5
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.3.0
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542 # v1.115.3
+        uses: ruby/setup-ruby@v1.143.0
         with:
           bundler-cache: true
       - name: Setup database
