@@ -134,4 +134,4 @@ group :development do
   gem 'solargraph-rails', require: false
 end
 
-gem "dockerfile-rails", ">= 1.2", :group => :development
+gem 'dockerfile-rails', '>= 1.2', group: :development
