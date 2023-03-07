@@ -18,6 +18,11 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
+  # Profile verification
+  devise_scope :user do
+    get 'user/verify', to: 'users/registrations#verify'
+  end
+
   # Authenticated routes
   authenticated do
     # Defines the root path route ("/")

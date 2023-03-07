@@ -1,0 +1,81 @@
+name: 'Pull Request'
+
+on:
+  pull_request:
+    branches: ['main']
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542 # v1.115.3
+        with:
+          bundler-cache: true
+  security:
+    name: Security checks
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542 # v1.115.3
+        with:
+          bundler-cache: true
+      - name: Security audit dependencies
+        run: ./bin/bundle exec bundler-audit --update
+      - name: Security audit application code
+        run: ./bin/bundle exec brakeman -q -A
+  lint:
+    name: Lint
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542 # v1.115.3
+        with:
+          bundler-cache: true
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.12.1'
+      - name: Lint Ruby files
+        run: ./bin/bundle exec rubocop --parallel
+      - name: Lint ERB files
+        run: ./bin/bundle exec erblint --lint-all
+      - name: Lint JS files
+        run: npx prettier --check "app/**/*.js"
+  check_annotations:
+    name: Check Annotations
+    needs: [setup]
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://armory:armory@localhost/armory
+    services:
+      postgres:
+        image: postgres:14.5-alpine
+        env:
+          POSTGRES_USER: armory
+          POSTGRES_PASSWORD: armory
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 1s --health-timeout 1s --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542 # v1.115.3
+        with:
+          bundler-cache: true
+      - name: Setup database
+        run: ./bin/rails db:create db:migrate
+      - name: Check missing model annotations
+        run: frozen=true ./bin/rails annotate_models
+      - name: Check missing route annotations
+        run: ./bin/bundle exec chusaku --exit-with-error-on-annotation

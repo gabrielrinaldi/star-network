@@ -19,12 +19,17 @@
               <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                 <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
               <% end %>
-              <%= f.input :username, required: true, hint: "Verification code: #{resource.verification_token}" %>
+              <%= f.input :username, disabled: true, hint: "Verification code: #{resource.verification_token}" %>
               <%= f.input :password, input_html: { autocomplete: 'new-password' } %>
               <%= f.input :password_confirmation, input_html: { autocomplete: 'new-password' } %>
               <%= f.input :current_password, required: true, input_html: { autocomplete: 'current-password' } %>
             </div>
             <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+              <% unless @current_user.verified? %>
+                <%= render(Layout::ButtonComponent.new(text: 'Verify profile',
+                                                       path: user_verify_path,
+                                                       style: :secondary)) %>
+              <% end %>
               <%= f.button :submit, 'Update' %>
             </div>
           </div>

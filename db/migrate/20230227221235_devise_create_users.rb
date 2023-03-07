@@ -34,6 +34,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string   :last_sign_in_ip
 
       # Verifiable
+      t.string :citizen_id
+      t.string :thumbnail
       t.string :verification_token, index: { unique: true }
       t.datetime :verified_at, index: true
 

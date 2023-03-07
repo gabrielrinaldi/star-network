@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   before_action :set_breadcrumbs
 
   # @route GET / (authenticated_root)
-  # @route GET /armory (armory)
+  # @route GET /dashboard (dashboard)
   def index; end
 
   private

@@ -23,9 +23,9 @@ class UserPolicy < ApplicationPolicy
 
   def permitted_attributes
     if @user.admin?
-      %i[username email admin verified_at]
+      %i[username email admin]
     else
-      %i[email]
+      %i[email password]
     end
   end
 

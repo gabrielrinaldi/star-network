@@ -74,6 +74,4 @@ development:
 #
 production:
   <<: *default
-  database: star_network_production
-  username: star_network
-  password: <%= ENV["STAR_NETWORK_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>

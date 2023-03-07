@@ -1,0 +1,13 @@
+<mj-section>
+  <mj-column>
+    <mj-text>
+      <p>Hello <%= @user.username %>!</p>
+
+      <p>Your account has been successfully verified! Welcome aboard.</p>
+
+      <p>Click the link below to view what is happening now or create a new request:</p>
+
+      <p><%= link_to 'Open my dashboard', dashboard_url %></p>
+    </mj-text>
+  </mj-column>
+</mj-section>

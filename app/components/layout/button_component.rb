@@ -20,10 +20,10 @@ module Layout
     private
       def base_color
         case @style
-        when :default
-          'indigo'
         when :danger
           'red'
+        else
+          'indigo'
         end
       end
 
@@ -31,6 +31,8 @@ module Layout
         case @style
         when :default
           'white'
+        when :secondary
+          'indigo-700'
         when :danger
           "#{base_color}-700"
         end
@@ -40,7 +42,7 @@ module Layout
         case @style
         when :default
           'transparent'
-        when :danger
+        else
           "#{base_color}-300"
         end
       end
@@ -49,7 +51,7 @@ module Layout
         case @style
         when :default
           "#{base_color}-600"
-        when :danger
+        else
           'white'
         end
       end
@@ -58,7 +60,7 @@ module Layout
         case @style
         when :default
           "#{base_color}-700"
-        when :danger
+        else
           "#{base_color}-50"
         end
       end

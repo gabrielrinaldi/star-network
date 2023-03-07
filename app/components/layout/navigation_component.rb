@@ -2,6 +2,8 @@
 
 module Layout
   class NavigationComponent < ViewComponent::Base
+    delegate :thumbnail, to: :helpers
+
     def initialize(title:, current_user:, breadcrumbs:)
       super
 

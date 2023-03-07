@@ -22,7 +22,7 @@ class User < ApplicationRecord
   validate :password_complexity
 
   def verified?
-    verfied_at.present?
+    verified_at.present?
   end
 
   def generate_two_factor_secret_if_missing!

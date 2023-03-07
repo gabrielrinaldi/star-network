@@ -83,9 +83,19 @@ gem 'light-service'
 
 # Background jobs
 gem 'sidekiq'
+gem 'sidekiq-cron'
 
 # HTML safety
 gem 'better_html'
+
+# HTTP client wrapper
+gem 'faraday'
+
+# HTTP client
+gem 'httpx'
+
+# Monitoring
+gem 'health_check', github: 'armoryapp/health_check'
 
 group :development do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -123,3 +133,5 @@ group :development do
   gem 'solargraph', require: false
   gem 'solargraph-rails', require: false
 end
+
+gem "dockerfile-rails", ">= 1.2", :group => :development

@@ -2,9 +2,6 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    # rubocop:disable Rails/LexicallyScopedActionFilter
-    before_action :configure_sign_up_params, only: [:create]
-    # rubocop:enable Rails/LexicallyScopedActionFilter
     before_action :configure_account_update_params, only: [:update]
 
     # @route GET /users/edit (edit_user_registration)
@@ -37,12 +34,21 @@ module Users
       end
     end
 
-    protected
-      # If you have extra params to permit, append them to the sanitizer.
-      def configure_sign_up_params
-        devise_parameter_sanitizer.permit(:sign_up, keys: %i[username])
-      end
+    def verify
+      VerifyProfileJob.perform_now(user: current_user)
 
+      if current_user.verified?
+        UserMailer.with(user: current_user).verified.deliver_later
+
+        redirect_back fallback_location: edit_user_registration_path, status: :see_other,
+                      notice: 'User was verified successfully'
+      else
+        redirect_back fallback_location: edit_user_registration_path, status: :see_other,
+                      alert: 'User could not be verified'
+      end
+    end
+
+    protected
       # If you have extra params to permit, append them to the sanitizer.
       def configure_account_update_params
         devise_parameter_sanitizer.permit(:account_update, keys: policy(resource).permitted_attributes)

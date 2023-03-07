@@ -32,6 +32,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_221235) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "citizen_id"
+    t.string "thumbnail"
     t.string "verification_token"
     t.datetime "verified_at"
     t.string "confirmation_token"

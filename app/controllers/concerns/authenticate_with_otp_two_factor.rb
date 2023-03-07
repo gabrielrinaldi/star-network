@@ -41,14 +41,14 @@ module AuthenticateWithOtpTwoFactor
     end
 
     def user_params
-      params.require(:user).permit(:username, :password, :otp_attempt)
+      params.require(:user).permit(:email, :password, :remember_me, :otp_attempt)
     end
 
     def find_user
       if session[:otp_user_id]
         User.find(session[:otp_user_id])
-      elsif user_params[:username]
-        User.find_by(username: user_params[:username])
+      elsif user_params[:email]
+        User.find_by(email: user_params[:email])
       end
     end
 

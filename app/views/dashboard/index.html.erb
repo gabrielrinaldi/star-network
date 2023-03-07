@@ -2,7 +2,21 @@
   Dashboard
 <% end %>
 
-<%= link_to 'Sign out',
-            destroy_user_session_path,
-            data: { turbo_method: :delete },
-            class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+<%= render(Layout::ContentFrameComponent.new) do %>
+  <% if @current_user.verified? %>
+
+  <% else %>
+    <div class="text-center">
+      <%= heroicon 'check-badge', variant: :outline,
+                                  options: { class: 'mx-auto h-12 w-12 text-gray-400', disable_default_class: true } %>
+      <h3 class="mt-2 text-sm font-semibold text-gray-900">User verification</h3>
+      <p class="mt-1 text-sm text-gray-500">Looks like you haven't verified your profile yet, to do this add the following code to your bio in your Star Citizen profile:</p>
+      <p class="mt-1 text-md text-gray-500 font-bold"><%= @current_user.verification_token %></p>
+      <p class="mt-1 text-sm text-gray-500">Once you've done that please click the button below.</p>
+      <div class="mt-6">
+        <%= render(Layout::ButtonComponent.new(text: 'Verify profile',
+                                               path: user_verify_path)) %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

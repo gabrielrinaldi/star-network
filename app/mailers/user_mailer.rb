@@ -5,4 +5,9 @@ class UserMailer < ApplicationMailer
     @user = params[:user]
     mail(to: @user.email, subject: 'Account deleted')
   end
+
+  def verified
+    @user = params[:user]
+    mail(to: @user.email, subject: 'Account verified')
+  end
 end
