@@ -22,6 +22,6 @@ jobs:
         with:
           bundler-cache: true
       - name: Install flyctl
-        uses: superfly/flyctl-actions/setup-flyctl@master
+        uses: superfly/flyctl-actions/setup-flyctl@1.3
       - name: Deploy
         run: ./bin/rails fly:deploy
