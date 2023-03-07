@@ -18,10 +18,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542 # v1.115.3
+        uses: ruby/setup-ruby@v1.143.0
         with:
           bundler-cache: true
       - name: Install flyctl
-        uses: superfly/flyctl-actions/setup-flyctl@master
+        uses: superfly/flyctl-actions/setup-flyctl@1.1
       - name: Deploy
         run: ./bin/rails fly:deploy
