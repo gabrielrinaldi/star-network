@@ -8,7 +8,11 @@
     <!-- Header -->
     <mj-section background-color="#4338ca">
       <mj-column>
-        <mj-image src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300" height="32px" alt="Star Network"></mj-image>
+        <mj-image
+          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300"
+          height="32px"
+          alt="Star Network"
+        ></mj-image>
       </mj-column>
     </mj-section>
     <!-- Content -->

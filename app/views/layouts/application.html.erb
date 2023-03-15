@@ -13,6 +13,7 @@
   </head>
 
   <body class="h-full">
+    <%= turbo_stream_from(:avatars) %>
     <%= render(Layout::FrameComponent.new) do %>
       <%= render(Layout::NavigationComponent.new(title: (yield :title), current_user:, breadcrumbs:)) %>
 

@@ -18,6 +18,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
 
       ## Extra fields
       t.citext :username, null: false, index: { unique: true }
+      t.integer :presence, null: false, default: 0, index: true
 
       ## Recoverable
       t.string :reset_password_token, index: { unique: true }

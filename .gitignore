@@ -30,5 +30,8 @@
 !/app/assets/builds/.keep
 /public/assets
 
+# Ignore Nova
+.nova
+
 # Ignore local environment variables.
 .env

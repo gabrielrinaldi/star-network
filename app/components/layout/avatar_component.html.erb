@@ -1,0 +1,4 @@
+<span id="<%= dom_id(@user, :navigation) %>" class="relative inline-block">
+  <%= image_tag thumbnail(user: @user), class: 'h-10 w-10 rounded-full ring-none' %>
+  <span class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full <%= presence_color %> ring-2 ring-white"></span>
+</span>

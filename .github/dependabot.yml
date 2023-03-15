@@ -6,22 +6,22 @@
 version: 2
 updates:
   # Maintain dependencies for Bundler
-  - package-ecosystem: "bundler"
-    directory: "/"
+  - package-ecosystem: 'bundler'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     versioning-strategy: increase-if-necessary
     commit-message:
-      prefix: "chore:"
+      prefix: 'chore:'
     labels:
-      - "chore"
-  
+      - 'chore'
+
   # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     commit-message:
-      prefix: "chore:"
+      prefix: 'chore:'
     labels:
-      - "chore"
+      - 'chore'

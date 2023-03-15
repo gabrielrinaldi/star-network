@@ -1,11 +1,49 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: users
+#
+#  admin                  :boolean          default(FALSE), not null
+#  citizen_id             :string
+#  confirmation_sent_at   :datetime
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  consumed_timestep      :integer
+#  created_at             :datetime         not null
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :string
+#  email                  :citext           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  failed_attempts        :integer          default(0), not null
+#  id                     :uuid             not null, primary key
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :string
+#  locked_at              :datetime
+#  otp_backup_codes       :string           is an Array
+#  otp_required_for_login :boolean
+#  otp_secret             :string
+#  presence               :integer          default("offline"), not null
+#  remember_created_at    :datetime
+#  reset_password_sent_at :datetime
+#  reset_password_token   :string
+#  sign_in_count          :integer          default(0), not null
+#  thumbnail              :string
+#  unconfirmed_email      :string
+#  unlock_token           :string
+#  updated_at             :datetime         not null
+#  username               :citext           not null
+#  verification_token     :string
+#  verified_at            :datetime
+#
 class User < ApplicationRecord
   include Tokenify
 
   nilify_blanks
 
   tokenify!(:verification_token, length: 8, unique: true)
+
+  enum :presence, { offline: 0, online: 1, away: 2, busy: 3 }
 
   devise :registerable, :recoverable, :rememberable, :validatable, :confirmable, :lockable, :timeoutable, :trackable,
          :two_factor_authenticatable, :two_factor_backupable,
@@ -20,6 +58,11 @@ class User < ApplicationRecord
   validates :username, uniqueness: { case_sensitive: false }
   validates :email, uniqueness: { case_sensitive: false }
   validate :password_complexity
+
+  after_update_commit lambda {
+                        broadcast_replace_to 'avatars', partial: 'users/avatar', locals: { user: self },
+                                                        target: "navigation_user_#{id}"
+                      }
 
   def verified?
     verified_at.present?

@@ -1,4 +1,4 @@
 midnight_verify_profiles:
-  cron: "0 0 * * *" # execute at every midnight
-  class: "VerifyProfilesJob"
+  cron: '0 0 * * *' # execute at every midnight
+  class: 'VerifyProfilesJob'
   active_job: true
