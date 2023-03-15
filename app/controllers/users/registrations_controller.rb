@@ -34,6 +34,7 @@ module Users
       end
     end
 
+    # @route GET /user/verify (user_verify)
     def verify
       VerifyProfileJob.perform_now(user: current_user)
 
