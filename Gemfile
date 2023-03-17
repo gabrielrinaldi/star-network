@@ -104,6 +104,9 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
 
+  # Docker
+  gem 'dockerfile-rails'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem 'rack-mini-profiler'
 
@@ -133,5 +136,3 @@ group :development do
   gem 'solargraph', require: false
   gem 'solargraph-rails', require: false
 end
-
-gem 'dockerfile-rails', '>= 1.2', group: :development
