@@ -147,7 +147,7 @@ GEM
       rails (>= 6.0.0)
     htmlbeautifier (1.4.2)
     http-2-next (0.5.1)
-    httpx (0.22.4)
+    httpx (0.22.5)
       http-2-next (>= 0.4.1)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
