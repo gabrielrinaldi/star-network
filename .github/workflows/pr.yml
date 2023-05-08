@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3.4.0
+        uses: actions/checkout@v3.5.2
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1.144.1
+        uses: ruby/setup-ruby@v1.148.0
         with:
           bundler-cache: true
   security:
@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3.4.0
+        uses: actions/checkout@v3.5.2
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1.144.1
+        uses: ruby/setup-ruby@v1.148.0
         with:
           bundler-cache: true
       - name: Security audit dependencies
@@ -36,9 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3.4.0
+        uses: actions/checkout@v3.5.2
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1.144.1
+        uses: ruby/setup-ruby@v1.148.0
         with:
           bundler-cache: true
       - name: Install Node.js
@@ -68,9 +68,9 @@ jobs:
         options: --health-cmd pg_isready --health-interval 1s --health-timeout 1s --health-retries 5
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3.4.0
+        uses: actions/checkout@v3.5.2
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1.144.1
+        uses: ruby/setup-ruby@v1.148.0
         with:
           bundler-cache: true
       - name: Setup database
