@@ -42,7 +42,7 @@ jobs:
         with:
           bundler-cache: true
       - name: Install Node.js
-        uses: actions/setup-node@v3.8.0
+        uses: actions/setup-node@v3.8.1
         with:
           node-version: '19.7.0'
       - name: Lint Ruby files
